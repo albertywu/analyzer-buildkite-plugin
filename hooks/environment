@@ -6,7 +6,8 @@ echo "trying to run a python script inside the plugin"
 python "$(dirname ${BASH_SOURCE})/../scripts/analyze.py"
 
 echo "buildkite bin path: $BUILDKITE_BIN_PATH"
-ln -s "${BUILDKITE_BIN_PATH}/analyze" "$(dirname ${BASH_SOURCE})/../scripts/analyze.py"
+rm -rf "${BUILDKITE_BIN_PATH}/analyze"
+ln -s "$(dirname ${BASH_SOURCE})/../scripts/analyze.py" "${BUILDKITE_BIN_PATH}/analyze"
 
 echo "testing symlinking binary to python file" 
 which analyze
