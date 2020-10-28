@@ -8,15 +8,14 @@ python "$(dirname ${BASH_SOURCE})/../scripts/analyze.py"
 echo "buildkite bin path: $BUILDKITE_BIN_PATH"
 
 whoami
-echo "path is: $PATH"
-
-echo "contents of $BUILDKITE_BIN_PATH :"
-ls -al "$BUILDKITE_BIN_PATH"
-echo "contents of /usr/local/bin :"
-ls -al /usr/local/bin/
-
-rm -rf "${BUILDKITE_BIN_PATH}/analyze"
-ln -s "$(dirname ${BASH_SOURCE})/../scripts/analyze.py" "${BUILDKITE_BIN_PATH}/analyze"
+ls -al ~
+pwd
+bin_dir=$(pwd)/bin
+mkdir -p $bin_dir
+rm -rf "${bin_dir}/analyze"
+ln -s "$(dirname ${BASH_SOURCE})/../scripts/analyze.py" "${bin_dir}/analyze"
+export PATH=$PATH:$bin_dir
+echo $PATH
 
 echo "testing symlinking binary to python file" 
 which analyze
