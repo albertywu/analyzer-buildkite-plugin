@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 echo "~~~ :arrow_heading_up: uploading job failures"
 echo "inside post-command hook of analyzer-buildkite-plugin"

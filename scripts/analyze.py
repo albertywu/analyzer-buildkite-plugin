@@ -66,7 +66,7 @@ def main():
     parser.add_argument('--step', required=True,
                         help='unique identifier for this step')
     parser.add_argument('--type', required=True, choices=['exitcode', 'sq_apply_diffs'],
-                        help='analyzer type (exitcode or log)')
+                        help='analyzer type (exitcode or sq_apply_diffs)')
     parser.add_argument('--args',
                         help='arguments for this analyzer (json string)')
     parser.add_argument('--dir', default="artifacts/analysis",
