@@ -4,21 +4,8 @@ set -x
 
 echo "~~~ analyzer-buildkite-plugin :: environment hook"
 
-echo "trying to run a python script inside the plugin"
-python "$(dirname ${BASH_SOURCE})/../scripts/analyze.py"
-
-echo "buildkite bin path: $BUILDKITE_BIN_PATH"
-
-whoami
-ls -al ~
-pwd
 bin_dir=$(pwd)/bin
 mkdir -p $bin_dir
 rm -rf "${bin_dir}/analyze"
 ln -s "$(dirname ${BASH_SOURCE})/../scripts/analyze.py" "${bin_dir}/analyze"
 export PATH=$PATH:$bin_dir
-echo $PATH
-
-echo "testing symlinking binary to python file" 
-which analyze
-analyze
