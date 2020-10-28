@@ -6,6 +6,15 @@ echo "trying to run a python script inside the plugin"
 python "$(dirname ${BASH_SOURCE})/../scripts/analyze.py"
 
 echo "buildkite bin path: $BUILDKITE_BIN_PATH"
+
+whoami
+echo "path is: $PATH"
+
+echo "contents of $BUILDKITE_BIN_PATH :"
+ls -al "$BUILDKITE_BIN_PATH"
+echo "contents of /usr/local/bin :"
+ls -al /usr/local/bin/
+
 rm -rf "${BUILDKITE_BIN_PATH}/analyze"
 ln -s "$(dirname ${BASH_SOURCE})/../scripts/analyze.py" "${BUILDKITE_BIN_PATH}/analyze"
 
