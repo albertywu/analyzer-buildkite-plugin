@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 echo "~~~ analyzer-buildkite-plugin :: environment hook"
 
 echo "trying to run a python script inside the plugin"
