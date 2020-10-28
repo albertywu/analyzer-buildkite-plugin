@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "~~~ analyzer-buildkite-plugin :: post-command hook"
+echo "jobId: ${BUILDKITE_JOB_ID}"

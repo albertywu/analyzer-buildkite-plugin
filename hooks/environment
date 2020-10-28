@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "~~~ analyzer-buildkite-plugin :: environment hook"
+
+echo "trying to run a python script inside the plugin"
+python $(dirname ${BASH_SOURCE})}/../scripts/analyze.py
+
+echo "buildkite bin path: $BUILDKITE_BIN_PATH"
+ln -s "${BUILDKITE_BIN_PATH}/analyze" $(dirname ${BASH_SOURCE})}/../scripts/analyze.py
+
+echo "testing symlinking binary to python file" 
+which analyze
+analyze
