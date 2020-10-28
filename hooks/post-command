@@ -1,7 +1,17 @@
 #!/bin/bash
 
-echo "~~~ analyzer-buildkite-plugin :: post-command hook"
-echo "jobId: ${BUILDKITE_JOB_ID}"
+echo "~~~ :arrow_heading_up: uploading job failures"
+echo "inside post-command hook of analyzer-buildkite-plugin"
 
-ls -al artifacts/analysis
-cat artifacts/analysis/failure
+failure="artifacts/analysis/failure"
+
+# if failure file not present, exit
+if ! ls "$failure" &> /dev/null; then
+  echo "no job failures to upload"
+  exit 0
+fi
+
+PIPELINE_SLUG="${BUILDKITE_TRIGGERED_FROM_BUILD_PIPELINE_SLUG:-$BUILDKITE_PIPELINE_SLUG}"
+BUILD_NUMBER="${BUILDKITE_TRIGGERED_FROM_BUILD_NUMBER:-$BUILDKITE_BUILD_NUMBER}"
+aws s3 cp "$failure" "s3://uber-web-monorepo/analysis/${BUILDKITE_ORGANIZATION_SLUG}/${PIPELINE_SLUG}/build-${BUILD_NUMBER}/${BUILDKITE_JOB_ID}.failure"
+buildkite-agent meta-data set "job-failure-${BUILDKITE_JOB_ID}" "$(cat $failure)"

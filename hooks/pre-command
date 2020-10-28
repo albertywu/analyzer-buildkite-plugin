@@ -2,7 +2,7 @@
 
 set -x
 
-echo "~~~ analyzer-buildkite-plugin :: environment hook"
+echo "~~~ installing analyzer in analyzer-buildkite-plugin"
 
 bin_dir=$(pwd)/bin
 mkdir -p $bin_dir
