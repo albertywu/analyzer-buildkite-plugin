@@ -2,3 +2,6 @@
 
 echo "~~~ analyzer-buildkite-plugin :: post-command hook"
 echo "jobId: ${BUILDKITE_JOB_ID}"
+
+ls -al artifacts/analysis
+cat artifacts/analysis/failure
