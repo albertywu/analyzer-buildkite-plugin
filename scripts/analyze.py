@@ -26,11 +26,11 @@ def wrapped_cmd(step, type, args, dir, cmd):
     log = "%s.log" % (step)
     if not os.path.exists(dir):
         os.makedirs(dir)
-    with open("%s/%s" % (dir, log), 'w+') as f:
+    with open("%s/%s" % (dir, log), 'wb') as f:
         start_time = get_timestamp()
         process = Popen(cmd, stdout=PIPE, stderr=STDOUT,
                         shell=True, executable="/bin/bash")
-        for c in iter(lambda: process.stdout.read(1), ''):
+        for c in iter(lambda: process.stdout.read(1), b''):
             sys.stdout.write(c)
             f.write(c)
         end_time = get_timestamp()
