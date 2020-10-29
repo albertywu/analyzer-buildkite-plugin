@@ -9,10 +9,6 @@ from analyzers import analyze_exitcode, analyze_sq_apply_diffs
 import fileinput
 
 
-def get_root():
-    return check_output("git rev-parse --show-toplevel", shell=True, stderr=STDOUT).rstrip()
-
-
 def analyze(config):
     if config['type'] == "exitcode":
         return analyze_exitcode(config)
